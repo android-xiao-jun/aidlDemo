@@ -3,7 +3,15 @@
           package="jun.example.com.myaidldemo">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <!--<permission android:name="jun.example.com.myaidldemo.permission.ACCESS_OFFER_SERVICE" android:protectionLevel="normal"/>-->
+    <!--需要申请动态-->
+    <permission android:name="jun.example.com.myaidldemo.permission.ACCESS_OFFER_SERVICE"
+                android:protectionLevel="dangerous"
+                android:label="@string/permission_aidl_lable"
+                android:description="@string/permission_aidl"
+                android:icon="@mipmap/ic_launcher_round"
+    />
+    <uses-permission android:name="jun.example.com.myaidldemo.permission.ACCESS_OFFER_SERVICE"/>
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -13,18 +21,16 @@
             android:theme="@style/AppTheme">
         <activity android:name=".ClientActivity">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN"/>
-
-            <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <service
-                android:name=".MyAidlService"
-                android:enabled="true"
-                android:exported="true"
-
-                android:process=":aidl"/>
+        <service android:name=".MyAidlService"
+                 android:enabled="true"
+                 android:exported="true"
+                 android:process=":aidl"
+                 android:permission="jun.example.com.myaidldemo.permission.ACCESS_OFFER_SERVICE"
+                 ></service>
     </application>
 
 </manifest>
